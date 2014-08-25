@@ -4,17 +4,17 @@
 #
 
 # In Linux, you can make a GUID by running `uuidgen` on the command line:
-id            abcdef01-2345-6789-9876-543210fedcba
+id            82354639-7275-4209-895b-656ab235074c
 
 # General config parameters
-name          babelext_your_name_here
-title         BabelExt
-description   An extension created with BabelExt - www.babelext.com
+name          forumites_friend
+title         Forumite's Friend
+description   Improvements for the Frontier Forums
 license       GPL
-author        honestbleeps
-version       0.95
-update_chrome http://babelext.com/update-chrome.php
-website       http://babelext.com
+author        Andrew Sayers
+version       0.91
+update_chrome http://pileofstuff.org/forumites-friend/forumites-friend.crx
+website       http://pileofstuff.org/forumites-friend
 #icon_16       icon-16.png
 #icon_32       icon-32.png
 #icon_48       icon-48.png
@@ -32,7 +32,7 @@ contentScriptWhen early
 
 # normal settings:
 contentScriptFile extension.js
-match_domain      babelext.com
+match_domain      forums.frontier.co.uk
 # uncomment the next line to match *.<match_domain>:
 # match_include_subdomains
 
