@@ -44,8 +44,8 @@ localStorage.removeItem = function(key) {
 };
 
 pageMod.PageMod({
-  include: ["*.babelext.com"],
-  contentScriptWhen: 'ready',
+  include: ["http://forums.frontier.co.uk/*","https://forums.frontier.co.uk/*"],
+  contentScriptWhen: 'start',
   contentScriptFile: [self.data.url('BabelExt.js'), self.data.url('extension.js')],
   onAttach: function(worker) {
 	tabs.on('activate', function(tab) {

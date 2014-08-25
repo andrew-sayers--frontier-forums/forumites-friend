@@ -1,18 +1,18 @@
 {
-	"name": "BabelExt Extension",
-	"author": "honestbleeps",
-	"version": "0.95",
+	"name": "Forumite's Friend",
+	"author": "Andrew Sayers",
+	"version": "0.91",
 	"manifest_version": 2,
-	"description": "An extension created with BabelExt - www.babelext.com",
-	"update_url": "http://babelext.com/update-chrome.php",
+	"description": "Improvements for the Frontier Forums",
+	"update_url": "http://pileofstuff.org/forumites-friend/forumites-friend.crx",
 	"background": {
 		"scripts": ["background.js"]
 	},
 	"content_scripts": [
 		{
-			"matches": ["http://babelext.com/*"],
+			"matches": ["*://forums.frontier.co.uk/*"],
 			"js": ["BabelExt.js", "extension.js"], // add others here if you like, i.e. jquery...
-			"run_at": "document_end"
+			"run_at": "document_start"
 		}
 	],
 	"icons": {},
