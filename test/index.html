@@ -9,6 +9,96 @@
     <input type="hidden" id="rendezvous">
     <div id="qunit"></div>
     <div id="qunit-fixture">
+
+      <div id="all-page-test">
+        <a id="cookie-test" href="forumdisplay.php?do=markread"></a>
+        <script>/* window.location = "#" */</script>
+      </div>
+
+      <div id="forum-display-test">
+        <div class="should-append"><div class="navbar"></div></div>
+        <div class="should-not-append"><div class="navbar"></div></div>
+        <div id="community"></div>
+      </div>
+
+      <div id="search-test">
+        <div id="searchform">
+          <div id="inlinemodform">
+            <a href="search.php?"></a>
+            <div>New Posts</div>
+          </div>
+          <div class="should-append"><div class="navbar"></div></div>
+          <div class="should-not-append"><div class="navbar"></div></div>
+          <input name="query">
+          <table>
+            <tr><td class="tcat">errors occurred</tr>
+            <tr><td id="should-be-googled"><ol></ol></tr>
+          </table>
+        </div>
+        <div class="tfoot"></div>
+      </div>
+
+      <table id="thread-test" class="tfoot">
+        <tr><td><td id="thread_title_1">1</tr>
+        <tr><td><td id="thread_title_12">12</tr>
+        <tr><td><td id="thread_title_123">123</tr>
+        <tr><td><td id="thread_title_1234">1234</tr>
+        <tr><td><td id="thread_title_12345">12345</tr>
+      </table>
+
+      <div id="showthread-test">
+        <a href="showthread.php?t=123&u=456"></a>
+        <div class="should-append"><div class="navbar"></div></div>
+        <div class="should-not-append"><div class="navbar"></div></div>
+        <table id="threadtools_menu">
+          <tr><td><a href="subscription.php">a</a></tr>
+          <tr><td><a href="subscription.php">a</a></tr>
+        </table>
+        <div id="displaymodes_menu"></div>
+        <div id="posts">
+          <div class="page should-hide"><div class="smallfont"><a href="profile.php?userlist=ignore&do=removelist&u="></a></div></div>
+          <div class="page should-not-hide"><div class="vbmenu_popup"><a href="private.php"></a></div></div>
+        </div>
+        <div id="lastpost"></div>
+      </div>
+
+      <form id="newthread-test">
+        <fieldset>
+          <legend>unmodified legend</legend>
+          <p id="tag_add_input"></p>
+          <div class="should-alter"></div>
+          <div class="should-not-alter"></div>
+        </fieldset>
+        <table class="should-be-aftered">
+          <tr><td><input name="subject"></td><td id="should-get-search-button"></td></tr>
+        </table>
+      </form>
+
+      <div id="editor-test">
+        <div><textarea id="vB_Editor_001_textarea"></textarea></div>
+        <div id="vB_Editor_001_save"></div>
+        <div class="should-be-appended">
+          <div class="should-be-shrunk" id="vB_Editor_001_save"></div>
+          <div class="should-be-bolded"></div>
+        </div>
+        <table><tr><td id="vB_Editor_001_cmd_unlink"></td></tr></table>
+      </div>
+
+      <div id="reply-test">
+        <input name="t" value="12345">
+        <fieldset>
+          <div id="rb_iconid_0"></div>
+        </fieldset>
+        <textarea id="vB_Editor_001_textarea">[quote=bar;1]</textarea>
+        <div class="should-be-appended">
+          <table name="title"></table>
+        </div>
+      </div>
+
+      <form id="ignore-test">
+        <input id="ignorelist_add_txt">
+      </form>
+
     </div>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/qunit/qunit-1.15.0.js"></script>

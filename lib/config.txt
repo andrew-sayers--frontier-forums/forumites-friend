@@ -30,12 +30,18 @@ website       http://pileofstuff.org/forumites-friend
 # * 'late' guarantees the scripts are run aft the page finishes loading
 contentScriptWhen early
 
+# always used:
+contentScriptFile jquery.min.js
+contentScriptFile jquery-observe.js
+contentScriptFile handlers.js
+
 # normal settings:
-contentScriptFile extension.js
+contentScriptFile dispatcher.js
 match_domain      forums.frontier.co.uk
 # uncomment the next line to match *.<match_domain>:
 # match_include_subdomains
 
 # test settings:
-#contentScriptFile test-helper.js
+#contentScriptFile jquery.mockjax.js
+#contentScriptFile test-dispatcher.js
 #match_domain      localhost
