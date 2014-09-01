@@ -1,7 +1,7 @@
 {
 	"name": "Forumite's Friend",
 	"author": "Andrew Sayers",
-	"version": "0.91",
+	"version": "0.92",
 	"manifest_version": 2,
 	"description": "Improvements for the Frontier Forums",
 	"update_url": "http://pileofstuff.org/forumites-friend/forumites-friend.crx",
@@ -10,8 +10,8 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["*://forums.frontier.co.uk/*"],
-			"js": ["BabelExt.js", "extension.js"], // add others here if you like, i.e. jquery...
+			"matches": ["*://forums.frontier.co.uk/*/*"],
+			"js": ["BabelExt.js", "jquery.min.js" , "jquery-observe.js" , "handlers.js" , "dispatcher.js"], // add others here if you like, i.e. jquery...
 			"run_at": "document_start"
 		}
 	],
