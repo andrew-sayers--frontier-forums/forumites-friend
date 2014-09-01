@@ -108,7 +108,7 @@ QUnit.test( "Search pages - new posts", function( assert ) {
 QUnit.test( "Search pages - query", function( assert ) {
 
     $('#qunit-fixture').children().not('#search-test').remove();
-    $('#inlinemodform a').attr( 'href', 'search.php?starteronly=01&exactname=0&query=foo' );
+    $('#inlinemodform a').attr( 'href', 'search.php?starteronly=01&exactname=0&query=foo&humanverify[]=blah' );
     dispatch({ handlers: ['search'], query_params: {} });
 
     assert.notEqual( $('.tfoo').html(), '', 'Correct Google link' );
