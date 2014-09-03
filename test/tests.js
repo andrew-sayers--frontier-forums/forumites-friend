@@ -105,6 +105,16 @@ QUnit.test( "Search pages - new posts", function( assert ) {
 
 });
 
+QUnit.test( "Search pages - search user", function( assert ) {
+
+    $('#qunit-fixture').children().not('#search-test').remove();
+    $('#inlinemodform div').html( 'Posts Made By: <span id="threadslist"><a href="member.php?u=12345">Some user</a></span>' );
+    dispatch({ handlers: ['search'], query_params: {} });
+    assert.equal( $('.should-append a').attr('href'), '/search.php?do=finduser&u=12345', 'Correct permalink' );
+    assert.   equal( $('.should-not-append').html(), '<div class="navbar"></div>', 'should-not-append not appended' );
+
+});
+
 QUnit.test( "Search pages - query", function( assert ) {
 
     $('#qunit-fixture').children().not('#search-test').remove();
