@@ -38,8 +38,6 @@ contentScriptFile handlers.js
 # normal settings:
 contentScriptFile dispatcher.js
 match_domain      forums.frontier.co.uk
-# uncomment the next line to match *.<match_domain>:
-# match_include_subdomains
 
 # test settings:
 #contentScriptFile jquery.mockjax.js
