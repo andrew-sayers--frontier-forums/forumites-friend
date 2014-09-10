@@ -496,6 +496,24 @@ QUnit.test( "Editor upgrades - links", function( assert ) {
             expected: '[thread=123]foo[/thread]',
         },
 
+        // Links within quotes:
+        {
+            input: '[quote][url]http://forums.frontier.co.uk/showthread.php?t=123[/url][/quote]',
+            expected: '[quote][url]http://forums.frontier.co.uk/showthread.php?t=123[/url][/quote]',
+        },
+        {
+            input: '[quote][url]http://forums.frontier.co.uk/showthread.php?t=123[/url][/quote][quote][url]http://forums.frontier.co.uk/showthread.php?p=1234[/url][/quote]',
+            expected: '[quote][url]http://forums.frontier.co.uk/showthread.php?t=123[/url][/quote][quote][url]http://forums.frontier.co.uk/showthread.php?p=1234[/url][/quote]',
+        },
+        {
+            input: '[quote][url]http://forums.frontier.co.uk/showthread.php?t=123[/url][quote][url]http://forums.frontier.co.uk/showthread.php?p=1234[/url][/quote][/quote]',
+            expected: '[quote][url]http://forums.frontier.co.uk/showthread.php?t=123[/url][quote][url]http://forums.frontier.co.uk/showthread.php?p=1234[/url][/quote][/quote]',
+        },
+        {
+            input: '[url]http://forums.frontier.co.uk/showthread.php?t=123[/url][quote][url]http://forums.frontier.co.uk/showthread.php?t=123[/url][quote][url]http://forums.frontier.co.uk/showthread.php?p=1234[/url][/quote][/quote][url]http://forums.frontier.co.uk/showthread.php?p=1234[/url]',
+            expected: '[thread=123]thread #123[/thread][quote][url]http://forums.frontier.co.uk/showthread.php?t=123[/url][quote][url]http://forums.frontier.co.uk/showthread.php?p=1234[/url][/quote][/quote][post=1234]post #1234[/post]',
+        }
+
     ];
 
     for ( var n=0; n!=tests.length; ++n ) {
