@@ -15,7 +15,7 @@
 		}
 	],
 	"icons": {},
-	"permissions": [
+	"permissions": [ "*://forums.frontier.co.uk/*",
 		"contextMenus",
 		"tabs",
 		"history",
