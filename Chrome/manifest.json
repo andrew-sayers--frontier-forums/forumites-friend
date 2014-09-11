@@ -4,14 +4,13 @@
 	"version": "1.0",
 	"manifest_version": 2,
 	"description": "Improvements for the Frontier Forums",
-	"update_url": "http://pileofstuff.org/forumites-friend/forumites-friend.crx",
 	"background": {
 		"scripts": ["background.js"]
 	},
 	"content_scripts": [
 		{
 			"matches": ["*://forums.frontier.co.uk/*"],
-			"js": ["BabelExt.js", "jquery.min.js" , "jquery-observe.js" , "handlers.js" , "dispatcher.js"], // add others here if you like, i.e. jquery...
+			"js": ["BabelExt.js", "jquery.min.js" , "jquery-observe.js" , "handlers.js" , "dispatcher.js"],
 			"run_at": "document_start"
 		}
 	],

@@ -7,19 +7,18 @@
 id            82354639-7275-4209-895b-656ab235074c
 
 # General config parameters
-name          forumites_friend
-title         Forumite's Friend
-description   Improvements for the Frontier Forums
-license       GPL
-author        Andrew Sayers
-version       1.0
-update_chrome http://pileofstuff.org/forumites-friend/forumites-friend.crx
-website       http://pileofstuff.org/forumites-friend
-#icon_16       icon-16.png
-#icon_32       icon-32.png
-#icon_48       icon-48.png
-#icon_64       icon-64.png
-#icon_128      icon-128.png
+name        forumites_friend
+title       Forumite's Friend
+description Improvements for the Frontier Forums
+license     GPL
+author      Andrew Sayers
+version     1.0
+website     http://pileofstuff.org/forumites-friend
+#icon_16    icon-16.png
+#icon_32    icon-32.png
+#icon_48    icon-48.png
+#icon_64    icon-64.png
+#icon_128   icon-128.png
 
 # userscript config parameters:
 
