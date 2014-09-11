@@ -12,7 +12,7 @@ title       Forumite's Friend
 description Improvements for the Frontier Forums
 license     GPL
 author      Andrew Sayers
-version     1.0
+version     1.2
 website     http://pileofstuff.org/forumites-friend
 #icon_16    icon-16.png
 #icon_32    icon-32.png
