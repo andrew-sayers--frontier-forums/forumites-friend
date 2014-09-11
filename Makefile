@@ -211,6 +211,9 @@ build/$(NAME).chrome.zip: build/$(NAME).crx
 	cd tmp && zip -rq ../$@ "$(NAME)"
 	rm -rf tmp
 
+build/chrome-store-upload.zip: Chrome lib/*
+	rm -f $@ && zip -r $@ Chrome --exclude \*~ --exclude Chrome/.gitignore
+
 build/$(NAME).nex: build/$(NAME).crx
 	cp $^ $@
 
