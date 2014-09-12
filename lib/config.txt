@@ -14,11 +14,11 @@ license     GPL
 author      Andrew Sayers
 version     1.2.1
 website     http://pileofstuff.org/forumites-friend
-#icon_16    icon-16.png
-#icon_32    icon-32.png
-#icon_48    icon-48.png
-#icon_64    icon-64.png
-#icon_128   icon-128.png
+icon_16    icon-16.png
+icon_32    icon-32.png
+icon_48    icon-48.png
+icon_64    icon-64.png
+icon_128   icon-128.png
 
 # userscript config parameters:
 
