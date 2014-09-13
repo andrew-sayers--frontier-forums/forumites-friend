@@ -570,3 +570,144 @@ QUnit.test( "Ignore test", function( assert ) {
     assert.equal( $('#ignorelist_add_txt').val(), 'foo', 'Username set correctly' );
 
 });
+
+QUnit.test( "Signature test", function( assert ) {
+
+    var fixtures = [
+        {
+            name: 'just an image',
+            line_count: 0,
+            html: '<img border="0" alt="" src="<<IMAGE>>">',
+            text: '<<IMAGE>>'
+        },
+        {
+            name: 'image and a line of text',
+            line_count: 1,
+            html: '<img border="0" alt="" src="<<IMAGE>>"><br>\nExample text',
+            text: '<<IMAGE>>'
+        },
+        {
+            name: 'image and two lines of text',
+            line_count: 2,
+            html: '<img border="0" alt="" src="<<IMAGE>>"><br>\nExample text<br>\nExample text',
+            text: '<<IMAGE>>'
+        },
+        {
+            name: 'image and three lines of text',
+            line_count: 3,
+            html: '<img border="0" alt="" src="<<IMAGE>>"><br>\nExample text<br>\nExample text<br>\nExample text',
+            text: '<<IMAGE>>'
+        },
+        {
+            name: 'image and four lines of text',
+            line_count: 4,
+            html: '<img border="0" alt="" src="<<IMAGE>>"><br>\nExample text<br>\nExample text<br>\nExample text<br>\nExample text',
+            text: '<<IMAGE>>'
+        },
+        {
+            name: 'image and five lines of text',
+            line_count: 5,
+            html: '<img border="0" alt="" src="<<IMAGE>>"><br>\nExample text<br>\nExample text<br>\nExample text<br>\nExample text<br>\nExample text',
+            text: '<<IMAGE>>'
+        },
+        {
+            name: 'image and size lines of text',
+            line_count: 6,
+            html: '<img border="0" alt="" src="<<IMAGE>>"><br>\nExample text<br>\nExample text<br>\nExample text<br>\nExample text<br>\nExample text<br>\nExample text',
+            text: '<<IMAGE>>'
+        },
+        {
+            name: 'entirely centred signature',
+            line_count: 2,
+            html:
+                '<div align="center">' +
+                '<br>\n' + // empty line counts as a line
+                '<img border="0" alt="" src="<<IMAGE>>"><br>\n' + // line break following image on a line on its own does not count
+                '<a href="http://www.example.com">Example link</a><br>\n' + // line
+                '</div>\n',
+            text: '[CENTER]<<IMAGE>>\n[URL="http://www.example.com"]Example link[/URL]\n[/CENTER]'
+        },
+        {
+            name: 'two centred signature blocks',
+            line_count: 1,
+            html:
+                '<div align="center"><img border="0" alt="" src="<<IMAGE>>"></div>' + // centred image doesn't count as a line
+                '<div align="center">Example text<br></div>\n', // text counts as a line
+            text: '[CENTER]<<IMAGE>>[/CENTER]\n[CENTER]Example text[/CENTER]'
+        },
+    ];
+
+    var images = [
+/**/
+        // If an image is added to a signature, and the image is up to 650x90, maximum lines permitted is two
+        { file: '649x89.png' , max_lines:  2 },
+        { file: '650x89.png' , max_lines:  2 },
+        { file: '649x90.png' , max_lines:  2 },
+        { file: '650x90.png' , max_lines:  2 },
+
+        // If an image is added to a signature, and the image is up to 650x120, maximum lines permitted is one
+        { file: '649x91.png' , max_lines:  1 },
+        { file: '650x91.png' , max_lines:  1 },
+        { file: '649x119.png', max_lines:  1 },
+        { file: '650x119.png', max_lines:  1 },
+        { file: '649x120.png', max_lines:  1 },
+        { file: '650x120.png', max_lines:  1 },
+
+        // If an image is added to a signature, and the image is up to 650x150, maximum lines permitted is zero
+        { file: '649x121.png', max_lines:  0 },
+        { file: '650x121.png', max_lines:  0 },
+        { file: '649x149.png', max_lines:  0 },
+        { file: '650x149.png', max_lines:  0 },
+        { file: '649x150.png', max_lines:  0 },
+        { file: '650x150.png', max_lines:  0 },
+
+        // Maximum height of an image is 150 pixels
+        { file: '649x151.png', max_lines: -1 },
+        { file: '650x151.png', max_lines: -1 },
+
+        // Maximum width of an image is 650 pixels
+        { file: '651x119.png', max_lines: -1 },
+        { file: '651x120.png', max_lines: -1 },
+        { file: '651x121.png', max_lines: -1 },
+        { file: '651x149.png', max_lines: -1 },
+        { file: '651x150.png', max_lines: -1 },
+        { file: '651x151.png', max_lines: -1 },
+        { file: '651x89.png' , max_lines: -1 },
+        { file: '651x90.png' , max_lines: -1 },
+        { file: '651x91.png' , max_lines: -1 }
+/**/
+    ];
+
+    $('#qunit-fixture').children().not('#signature-test').remove();
+
+    dispatch_js(
+        'var old_confirm = window.confirm;' +
+        'setTimeout( function() { window.confirm = old_confirm }, 0);' +
+        'window.confirm = function(message) { document.getElementById("signature-test-main").setAttribute( "data-confirmed", "true" ); return false };'
+    );
+
+    dispatch({ handlers: ['profile signature'], query_params: {} });
+
+    for ( var fixture=0; fixture!=fixtures.length; ++fixture ) {
+        for ( var image=0; image!=images.length; ++image ) {
+            $('#signature-test-main').html(
+                '__________________<br>\n' +
+                fixtures[fixture].html.replace( '<<IMAGE>>', 'signatures/' + images[image].file )
+            );
+            document.getElementById("signature-test-main").removeAttribute( "data-confirmed" );
+            dispatch({ handlers: ['showthread'], query_params: {} });
+            $('#vB_Editor_001_textarea').val(fixtures[fixture].html.replace( '<<IMAGE>>', '[IMG]signatures/' + images[image].file + '[/IMG]' ));
+            var name = images[image].file + ': signature with ' + fixtures[fixture].name + ' ';
+            if ( fixtures[fixture].line_count <= images[image].max_lines ) {
+                assert.ok( !document.getElementById("signature-test-main").hasAttribute("data-confirmed"), name + 'does not trigger a warning' );
+                assert.equal( $('#caution-box').length, 0, name + 'does not create a caution box' );
+            } else {
+                assert.ok(  document.getElementById("signature-test-main").hasAttribute("data-confirmed"), name + 'triggers a warning' );
+                assert.equal( $('#caution-box').length, 0, name + 'creates a caution box' );
+            }
+        }
+    }
+
+    dispatch_js("window.confirm = old_confirm;");
+
+});

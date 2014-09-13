@@ -1,0 +1,64 @@
+var fixtures = [
+    {
+        name: 'entirely centred signature',
+        line_count: 2,
+        html: '<div align="center">\n' +
+            '<br>\n' + // empty line counts as a line
+            '<img border="0" alt="" src="<<IMAGE>>">\n<br>\n' + // line break following image on a line on its own does not count
+            '<a href="http://www.example.com">Example link</a><br>\n' + // line
+            '</div>\n'
+    }
+];
+
+var images = [
+
+    // If an image is added to a signature, and the image is up to 650x90, maximum lines permitted is two
+    { file: '649x89.png', max_lines => 2 },
+    { file: '650x89.png', max_lines => 2 },
+    { file: '649x90.png', max_lines => 2 },
+    { file: '650x90.png', max_lines => 2 },
+
+    // If an image is added to a signature, and the image is up to 650x120, maximum lines permitted is one
+    { file: '649x91.png', max_lines => 1 },
+    { file: '650x91.png', max_lines => 1 },
+    { file: '649x119.png', max_lines => 1 },
+    { file: '650x119.png', max_lines => 1 },
+    { file: '649x120.png', max_lines => 1 },
+    { file: '650x120.png', max_lines => 1 },
+
+    // If an image is added to a signature, and the image is up to 650x150, maximum lines permitted is zero
+    { file: '649x121.png', max_lines => 0 },
+    { file: '650x121.png', max_lines => 0 },
+    { file: '649x149.png', max_lines => 0 },
+    { file: '650x149.png', max_lines => 0 },
+    { file: '649x150.png', max_lines => 0 },
+    { file: '650x150.png', max_lines => 0 },
+
+    // Maximum height of an image is 150 pixels
+    { file: '649x151.png', max_lines => -1 },
+    { file: '650x151.png', max_lines => -1 },
+
+    // Maximum width of an image is 650 pixels
+    { file: '651x119.png', max_lines => -1 },
+    { file: '651x120.png', max_lines => -1 },
+    { file: '651x121.png', max_lines => -1 },
+    { file: '651x149.png', max_lines => -1 },
+    { file: '651x150.png', max_lines => -1 },
+    { file: '651x151.png', max_lines => -1 },
+    { file: '651x89.png' , max_lines => -1 },
+    { file: '651x90.png' , max_lines => -1 },
+    { file: '651x91.png' , max_lines => -1 }
+
+];
+
+for ( var n=0; n!=images.length, ++n ) {
+    for ( var fixture=0; fixture!=fixtures.length; ++fixture ) {
+        test(
+            '<div>\n' +
+                '__________________\n<br>\n' +
+                fixtures[n].html.replace( '<<IMAGE>>', images[n].file ) +
+            '</div>\n' +
+            fixtures[n].line_count <= images[n].max_lines
+        );
+    }
+}
