@@ -1,21 +1,38 @@
 {
 	"name": "Forumite's Friend",
 	"author": "Andrew Sayers",
-	"version": "1.2.2",
+	"version": "1.2.5",
 	"manifest_version": 2,
 	"description": "Improvements for the Frontier Forums",
 	"background": {
-		"scripts": ["background.js"]
+		"scripts": [
+			"background.js"
+		]
 	},
 	"content_scripts": [
 		{
-			"matches": ["*://forums.frontier.co.uk/*"],
-			"js": ["BabelExt.js", "jquery.min.js" , "jquery-observe.js" , "handlers.js" , "dispatcher.js"],
+			"matches": [
+				"*://forums.frontier.co.uk/*"
+			],
+			"js": [
+				"BabelExt.js",
+				"dispatcher.js",
+				"jquery.min.js",
+				"jquery-observe.js",
+				"handlers.js"
+			],
 			"run_at": "document_start"
 		}
 	],
-	"icons": {},
-	"permissions": [ "*://forums.frontier.co.uk/*",
+	"icons": {
+		"16": "icon-16.png",
+		"32": "icon-32.png",
+		"48": "icon-48.png",
+		"64": "icon-64.png",
+		"128": "icon-128.png"
+	},
+	"permissions": [
+		"*://forums.frontier.co.uk",
 		"contextMenus",
 		"tabs",
 		"history",

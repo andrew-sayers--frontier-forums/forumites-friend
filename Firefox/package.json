@@ -1,9 +1,11 @@
 {
-    "description": "Improvements for the Frontier Forums", 
-    "license": "GPL", 
-    "author": "Andrew Sayers", 
-    "version": "1.2.2", 
-    "title": "Forumite's Friend", 
-    "id": "82354639-7275-4209-895b-656ab235074c", 
-    "name": "forumites_friend"
+    "description": "Improvements for the Frontier Forums",
+    "license": "GPL",
+    "author": "Andrew Sayers",
+    "version": "1.2.5",
+    "title": "Forumite's Friend",
+    "id": "82354639-7275-4209-895b-656ab235074c",
+    "name": "forumites_friend",
+    "icon": "icon-48.png",
+    "icon_64": "icon-64.png"
 }
