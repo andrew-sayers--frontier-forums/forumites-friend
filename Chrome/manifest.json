@@ -1,7 +1,7 @@
 {
 	"name": "Forumite's Friend",
 	"author": "Andrew Sayers",
-	"version": "1.2.6",
+	"version": "1.3",
 	"manifest_version": 2,
 	"description": "Improvements for the Frontier Forums",
 	"background": {
@@ -16,10 +16,10 @@
 			],
 			"js": [
 				"BabelExt.js",
-				"dispatcher.js",
 				"jquery.min.js",
 				"jquery-observe.js",
-				"handlers.js"
+				"handlers.js",
+				"dispatcher.js"
 			],
 			"run_at": "document_start"
 		}
@@ -32,7 +32,7 @@
 		"128": "icon-128.png"
 	},
 	"permissions": [
-		"*://forums.frontier.co.uk",
+		"*://forums.frontier.co.uk/*",
 		"contextMenus",
 		"tabs",
 		"history",

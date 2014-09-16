@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.6</string>
+	<string>1.3</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.6</string>
+	<string>1.3</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -61,10 +61,10 @@
 			<key>Start</key>
 			<array>
 				<string>BabelExt.js</string>
-				<string>dispatcher.js</string>
 				<string>jquery.min.js</string>
 				<string>jquery-observe.js</string>
 				<string>handlers.js</string>
+				<string>dispatcher.js</string>
 			</array>
 		</dict>
 	</dict>
