@@ -1,5 +1,9 @@
 /firefox-unpacked
+/firefox-addon-sdk-url.txt
 /firefox-addon-sdk
+/lib/local_settings.json
 /Chrome.pem
 /build
 *~
+/Chrome/*.png
+/Firefox/*.png
