@@ -154,7 +154,7 @@ QUnit.test( "Show thread page", function( assert ) {
     assert.notEqual( $('.should' +'-append').html(), '<div class="navbar"></div>', 'should-append appended correctly' );
     assert.   equal( $('.should-not-append').html(), '<div class="navbar"></div>', 'should-not-append not appended' );
 
-    assert.equal( $('#threadtools_menu tr').length, 3, 'One subscription link added' );
+    assert.equal( $('#threadtools_menu tr').length, 4, 'Subscription link and "who posted?" link added' );
     assert.equal( $('.should-hide').not(':visible').length, 1, 'One post hidden' );
     assert.equal( $('.should-not-hide').filter(':visible').length, 1, 'One post not hidden' );
 
@@ -573,7 +573,7 @@ QUnit.test( "Ignore test", function( assert ) {
 
 QUnit.test( "Signature test", function( assert ) {
 
-    var fixtures = [
+    var fixtures_with_images = [
         {
             name: 'just an image',
             line_count: 0,
@@ -678,6 +678,47 @@ QUnit.test( "Signature test", function( assert ) {
 /**/
     ];
 
+    var fixtures_without_images = [
+        {
+            name: 'quote followed by text',
+            line_count: 4,
+            html:
+                'Example text<br />\n' + // text counts as one line
+                  '<div style="margin:20px; margin-top:5px; ">\n' +
+                    '<div class="smallfont" style="margin-bottom:2px">Quote:</div>\n' + // quote counts as two lines
+                    '<table cellpadding="6" cellspacing="0" border="0" width="100%">\n' +
+                      '<tr>\n' +
+                        '<td class="alt2" style="border:1px inset">\n\n' +
+                          '<div>\n' +
+                            'Originally Posted by <strong>User</strong>\n' +
+                            '<a href="showthread.php?p=12345#post12345" rel="nofollow"><img class="inlineimg" src="skins/frontier/buttons/viewpost.gif" border="0" alt="View Post" /></a>\n' +
+                          '</div>\n' +
+                          '<div style="font-style:italic">Example text</div>\n\n' + // quoted text counts as one line
+                        '</td>\n' +
+                      '</tr>\n' +
+                    '</table>\n' +
+                  '</div>\n' +
+                '</div>\n',
+            text: 'Example text\n[QUOTE=User;12345]Example text[/QUOTE]',
+        },
+        {
+            name: 'left-aligned block with quote',
+            line_count: 4,
+            html:
+                '<div align="left"><div style="margin:20px; margin-top:5px; ">\n' +
+                  '<div class="smallfont" style="margin-bottom:2px">Quote:</div>\n' + // quote counts as two lines
+                  '<table cellpadding="6" cellspacing="0" border="0" width="100%">\n' +
+                    '<tr>\n' +
+                      '<td class="alt2" style="border:1px inset">\n\n' +
+                        'Example text\n\n' + // quoted text counts as one line
+                      '</td>\n' +
+                    '</tr>\n' +
+                  '</table>\n' +
+                '</div>Example text</div>', // text counts as one line
+            text: '[LEFT][QUOTE]Example text[/QUOTE]Example text[/LEFT]',
+        },
+    ];
+
     $('#qunit-fixture').children().not('#signature-test').remove();
 
     dispatch_js(
@@ -688,23 +729,41 @@ QUnit.test( "Signature test", function( assert ) {
 
     dispatch({ handlers: ['profile signature'], query_params: {} });
 
-    for ( var fixture=0; fixture!=fixtures.length; ++fixture ) {
+    for ( var fixture=0; fixture!=fixtures_with_images.length; ++fixture ) {
         for ( var image=0; image!=images.length; ++image ) {
             $('#signature-test-main').html(
                 '__________________<br>\n' +
-                fixtures[fixture].html.replace( '<<IMAGE>>', 'signatures/' + images[image].file )
+                fixtures_with_images[fixture].html.replace( '<<IMAGE>>', 'signatures/' + images[image].file )
             );
             document.getElementById("signature-test-main").removeAttribute( "data-confirmed" );
             dispatch({ handlers: ['showthread'], query_params: {} });
-            $('#vB_Editor_001_textarea').val(fixtures[fixture].html.replace( '<<IMAGE>>', '[IMG]signatures/' + images[image].file + '[/IMG]' ));
-            var name = images[image].file + ': signature with ' + fixtures[fixture].name + ' ';
-            if ( fixtures[fixture].line_count <= images[image].max_lines ) {
+            $('#vB_Editor_001_textarea').val(fixtures_with_images[fixture].text.replace( '<<IMAGE>>', '[IMG]signatures/' + images[image].file + '[/IMG]' ));
+            var name = images[image].file + ': signature with ' + fixtures_with_images[fixture].name + ' ';
+            if ( fixtures_with_images[fixture].line_count <= images[image].max_lines ) {
                 assert.ok( !document.getElementById("signature-test-main").hasAttribute("data-confirmed"), name + 'does not trigger a warning' );
                 assert.equal( $('#caution-box').length, 0, name + 'does not create a caution box' );
             } else {
                 assert.ok(  document.getElementById("signature-test-main").hasAttribute("data-confirmed"), name + 'triggers a warning' );
                 assert.equal( $('#caution-box').length, 0, name + 'creates a caution box' );
             }
+        }
+    }
+
+    for ( var fixture=0; fixture!=fixtures_without_images.length; ++fixture ) {
+        $('#signature-test-main').html(
+            '__________________<br>\n' +
+            fixtures_without_images[fixture].html
+        );
+        document.getElementById("signature-test-main").removeAttribute( "data-confirmed" );
+        dispatch({ handlers: ['showthread'], query_params: {} });
+        $('#vB_Editor_001_textarea').val(fixtures_without_images[fixture].text);
+        var name = fixtures_without_images[fixture].name + ' ';
+        if ( fixtures_without_images[fixture].line_count <= 5 ) {
+            assert.ok( !document.getElementById("signature-test-main").hasAttribute("data-confirmed"), name + 'does not trigger a warning' );
+            assert.equal( $('#caution-box').length, 0, name + 'does not create a caution box' );
+        } else {
+            assert.ok(  document.getElementById("signature-test-main").hasAttribute("data-confirmed"), name + 'triggers a warning' );
+            assert.equal( $('#caution-box').length, 0, name + 'creates a caution box' );
         }
     }
 

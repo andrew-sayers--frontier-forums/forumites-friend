@@ -51,7 +51,7 @@
         },
 
         "test": {
-            "contentScriptFiles": [ "console.js", "test-dispatcher.js" ],
+            "contentScriptFiles": [ "console.js", "jquery.mockjax.js", "test-dispatcher.js" ],
             "match_domain":       "localhost",
         },
 
