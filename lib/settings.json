@@ -62,64 +62,53 @@
     },
 
     "preferences": [
-        /*
-         * Preferences that users can set in the browser's preferences page.
-         * The layout is based on Mozilla's "simple preferences" interface:
-         * https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/simple-prefs
-         * currently supported types: bool, boolint, integer, string, menulist, radio
-         */
         {
-            "name": "myBool",
+            "name": "thumbnailise-enabled",
             "type": "bool",
-            "title": "myBool preference title",
-            "description": "myBool short description for the preference",
-            "value": false, // default value - true or false
+            "title": "Convert large images to thumbnails",
+            "description": "Images larger than a given size will be displayed as 100px thumbnails until clicked",
+            "value": true,
         },
         {
-            "name": "myBoolint",
-            "type": "boolint",
-            "title": "myBoolint preference title",
-            "description": "myBoolint short description for the preference",
-            "off": "1",
-            "on": "2",
-            "value": 1, // default value - 0 or 1
-        },
-        {
-            "name": "myInteger",
+            "name": "thumbnailise-width",
             "type": "integer",
-            "title": "myInteger preference title",
-            "description": "myInteger short description for the preference",
-            "value": 2, // default value - integer number
+            "title": "Convert images wider than...",
+            "description": "Images wider than the given size will be displayed as 100px thumbnails until clicked",
+            "value": 80,
         },
         {
-            "name": "myString",
-            "type": "string",
-            "title": "myString preference title",
-            "description": "myString short description for the preference",
-            "value": "this is the default string value",
+            "name": "thumbnailise-height",
+            "type": "integer",
+            "title": "Convert images taller than...",
+            "description": "Images taller than the given size will be displayed as 100px thumbnails until clicked",
+            "value": 80,
         },
         {
-            "name": "myMenulist",
-            "type": "menulist",
-            "title": "myMenulist preference title",
-            "value": 0,
-            "options": [
-                { "value": "0", "label": "first label" },
-                { "value": "1", "label": "second label" },
-                { "value": "2", "label": "third label" },
-            ]
-        },
-        {
-            "name": "myRadio",
+            "name": "thumbnailise-units",
             "type": "radio",
-            "title": "myRadioTitle",
-            "value": "a",
+            "title": "Thumbnail width and height are measured in",
+            "value": "viewport",
             "options": [
-                { "value": "a", "label": "first label" },
-                { "value": "b", "label": "second label" },
-                { "value": "c", "label": "third label" },
+                { "value": "viewport", "label": "percentage of the window size" },
+                { "value": "pixels", "label": "pixels" }
             ]
         },
+
+        {
+            "name": "superignore-users",
+            "type": "bool",
+            "title": "Super-ignore users",
+            "description": "Messages from ignored users will be removed altogether, instead of showing a stub message",
+            "value": false,
+        },
+        {
+            "name": "superignore-threads",
+            "type": "bool",
+            "title": "Super-ignore threads",
+            "description": "Ignored threads will be removed altogether, instead of showing a stub notification",
+            "value": false,
+        }
+
     ],
 
     "firefox_max_version": '32.*'
