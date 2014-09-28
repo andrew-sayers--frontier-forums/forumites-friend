@@ -36,7 +36,7 @@
      */
     "contentScriptWhen": "early",
 
-    "contentScriptFiles": [ "jquery.min.js", "extension.js" ],
+    "contentScriptFiles": [ "jquery-2.1.1.min.js", "extension.js" ],
     "match_domain":       "forums.frontier.co.uk",
     // whether to match https://<match_domain>:
     "match_secure_domain": true,
