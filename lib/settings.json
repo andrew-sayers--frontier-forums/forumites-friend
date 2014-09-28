@@ -36,7 +36,7 @@
      */
     "contentScriptWhen": "early",
 
-    "contentScriptFiles": [ "jquery.min.js", "jquery-observe.js", "extension.js" ],
+    "contentScriptFiles": [ "jquery.min.js", "extension.js" ],
     "match_domain":       "forums.frontier.co.uk",
     // whether to match https://<match_domain>:
     "match_secure_domain": true,
@@ -47,7 +47,7 @@
          * variables from the relevant block will be used:
          */
         "development": {
-            "contentScriptFiles": [ "dispatcher.js" ],
+            "contentScriptFiles": [],
         },
 
         "test": {
@@ -56,7 +56,7 @@
         },
 
         "production": {
-            "contentScriptFiles": [ "dispatcher.js" ],
+            "contentScriptFiles": [],
         }
 
     },
