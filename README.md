@@ -23,3 +23,5 @@ Features:
 * Warning message for various faux pas during post/thread creation
 * Save draft posts and threads
 * Prune the "thread view" cookie so recently-read threads are always correctly highlighted
+* Link to time zone settings from "current time" section of the page
+* Show local time when people mention GMT/BST in posts
