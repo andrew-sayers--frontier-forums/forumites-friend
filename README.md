@@ -20,5 +20,6 @@ Features:
 * Search button on thread creation page
 * Suggestions and alternatives when creating replies and threads
 * Button to automatically convert [URL]s to [post]s and [thread]s
+* Warning message for various faux pas during post/thread creation
 * Save draft posts and threads
 * Prune the "thread view" cookie so recently-read threads are always correctly highlighted
