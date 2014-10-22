@@ -7,6 +7,7 @@ Features:
 
 * Skip the "Open the message in a new window?" box when receiving a PM
 * Permalinks for forums, threads, posts and searches
+* Pressing F5 on a search page loads new search results instead of refreshing the page
 * Ignore forums and threads
 * Super-ignore
 * Link to Google from search result pages
