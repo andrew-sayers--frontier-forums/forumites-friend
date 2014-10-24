@@ -6,4 +6,7 @@
 /build
 *~
 /Chrome/*.png
+/Chrome/options.html
 /Firefox/*.png
+/Firefox/data/*.js
+/Safari.safariextension/Settings.plist

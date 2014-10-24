@@ -36,6 +36,7 @@
 		"contextMenus",
 		"tabs",
 		"history",
-		"notifications"
+		"notifications",
+		"storage"
 	]
 }
