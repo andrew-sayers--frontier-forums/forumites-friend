@@ -2,10 +2,63 @@
     "description": "Improvements for the Frontier Forums",
     "license": "GPL",
     "author": "Andrew Sayers",
-    "version": "1.5.1",
+    "version": "2.0",
     "title": "Forumite's Friend",
     "id": "82354639-7275-4209-895b-656ab235074c",
     "name": "forumites-friend",
     "icon": "icon-48.png",
-    "icon_64": "icon-64.png"
+    "icon_64": "icon-64.png",
+    "preferences": [
+        {
+            "name": "thumbnailise-enabled",
+            "type": "bool",
+            "title": "Convert large images to thumbnails",
+            "description": "Images larger than a given size will be displayed as 100px thumbnails until clicked",
+            "value": true
+        },
+        {
+            "name": "thumbnailise-width",
+            "type": "integer",
+            "title": "Convert images wider than...",
+            "description": "Images wider than the given size will be displayed as 100px thumbnails until clicked",
+            "value": 80
+        },
+        {
+            "name": "thumbnailise-height",
+            "type": "integer",
+            "title": "Convert images taller than...",
+            "description": "Images taller than the given size will be displayed as 100px thumbnails until clicked",
+            "value": 80
+        },
+        {
+            "name": "thumbnailise-units",
+            "type": "radio",
+            "title": "Thumbnail width and height are measured in",
+            "value": "viewport",
+            "options": [
+                {
+                    "value": "viewport",
+                    "label": "percentage of the window size"
+                },
+                {
+                    "value": "pixels",
+                    "label": "pixels"
+                }
+            ]
+        },
+        {
+            "name": "superignore-users",
+            "type": "bool",
+            "title": "Super-ignore users",
+            "description": "Messages from ignored users will be removed altogether, instead of showing a stub message",
+            "value": false
+        },
+        {
+            "name": "superignore-threads",
+            "type": "bool",
+            "title": "Super-ignore threads",
+            "description": "Ignored threads will be removed altogether, instead of showing a stub notification",
+            "value": false
+        }
+    ]
 }

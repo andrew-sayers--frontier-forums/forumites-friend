@@ -1,11 +1,12 @@
 {
 	"name": "Forumite's Friend",
 	"author": "Andrew Sayers",
-	"version": "1.5.1",
+	"version": "2.0",
 	"manifest_version": 2,
 	"description": "Improvements for the Frontier Forums",
 	"background": {
 		"scripts": [
+			"preferences.js",
 			"background.js"
 		]
 	},
@@ -16,10 +17,8 @@
 			],
 			"js": [
 				"BabelExt.js",
-				"jquery.min.js",
-				"jquery-observe.js",
-				"handlers.js",
-				"dispatcher.js"
+				"jquery-2.1.1.min.js",
+				"extension.js"
 			],
 			"run_at": "document_start"
 		}
@@ -38,5 +37,6 @@
 		"history",
 		"notifications",
 		"storage"
-	]
+	],
+	"options_page": "options.html"
 }

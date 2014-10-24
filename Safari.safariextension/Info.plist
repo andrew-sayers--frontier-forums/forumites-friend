@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5.1</string>
+	<string>2.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.5.1</string>
+	<string>2.0</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -61,10 +61,8 @@
 			<key>Start</key>
 			<array>
 				<string>BabelExt.js</string>
-				<string>jquery.min.js</string>
-				<string>jquery-observe.js</string>
-				<string>handlers.js</string>
-				<string>dispatcher.js</string>
+				<string>jquery-2.1.1.min.js</string>
+				<string>extension.js</string>
 			</array>
 		</dict>
 	</dict>
@@ -78,7 +76,7 @@
 		<dict>
 			<key>Allowed Domains</key>
 			<array>
-				<string>babelext.com</string>
+				<string>forums.frontier.co.uk</string>
 			</array>
 			<key>Include Secure Pages</key>
 			<true/>
