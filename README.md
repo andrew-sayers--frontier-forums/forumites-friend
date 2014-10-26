@@ -25,3 +25,4 @@ Features:
 * Prune the "thread view" cookie so recently-read threads are always correctly highlighted
 * Link to time zone settings from "current time" section of the page
 * Show local time when people mention GMT/BST in posts
+* Make the reputation section a bit more self-explanatory
